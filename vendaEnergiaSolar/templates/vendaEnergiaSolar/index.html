@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body style="text-align:center">
+    <table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome Completo</th>
+            <th>CPF</th>
+            <th>Data de Nascimento</th>
+            <th>RG</th>
+            <th>Email</th>
+            <th>Telefone Principal</th>
+            <th>Telefone Secundário</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for pessoafisica in pessoasfisicas %}
+            <tr>
+                <td>{{ pessoafisica.id }}</td>
+                <td>{{ pessoafisica.nome_completo }}</td>
+                <td>{{ pessoafisica.cpf }}</td>
+                <td>{{ pessoafisica.data_nasc|date:"d/m/Y" }}</td>
+                <td>{{ pessoafisica.rg }}</td>
+                <td>{{ pessoafisica.email }}</td>
+                <td>{{ pessoafisica.telefone_principal }}</td>
+                <td>{{ pessoafisica.telefone_secundario }}</td>
+                <td>
+                    <form action="{% url 'atualizarPessoaFisica' pessoafisica.id %}" method="post">
+                        {% csrf_token %}
+                        <button>Atualizar</button>
+                    </form>
+                    <form action="{% url 'deletarPessoaFisica' pessoafisica.id %}" method="post">
+                        {% csrf_token %}
+                        <button>Deletar</button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+    <form action="{% url 'visualizarPessoaJuridica' %}" method="post">
+        {% csrf_token %}
+        <button>
+            Visualizar pessoa juridica
+        </button>
+    </form>
+    <form action="{% url 'cadastrarPessoaFisica' %}" method="post">
+        {% csrf_token %}
+        <button>
+            Cadastrar pessoa fisica
+        </button>
+    </form>
+</body>
+</html>

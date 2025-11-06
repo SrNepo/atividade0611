@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Pessoa Juridica</title>
+</head>
+<body style="text-align: center;">
+    <table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome Fantasia</th>
+            <th>CNPJ</th>
+            <th>Razão Social</th>
+            <th>Data de Abertura</th>
+            <th>Inscrição Estadual</th>
+            <th>Endereço</th>
+            <th>CEP</th>
+            <th>Logradouro</th>
+            <th>Número</th>
+            <th>Bairro</th>
+            <th>Cidade</th>
+            <th>Estado</th>
+            <th>País</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for pessoajuridica in pessoasjuridicas %}
+            <tr>
+                <td>{{ pessoajuridica.id }}</td>
+                <td>{{ pessoajuridica.nome_fantasia }}</td>
+                <td>{{ pessoajuridica.cnpj }}</td>
+                <td>{{ pessoajuridica.razao_social }}</td>
+                <td>{{ pessoajuridica.abertura|date:"d/m/Y" }}</td>
+                <td>{{ pessoajuridica.inscricao_estadual }}</td>
+                <td>{{ pessoajuridica.endereco }}</td>
+                <td>{{ pessoajuridica.cep }}</td>
+                <td>{{ pessoajuridica.logradouro }}</td>
+                <td>{{ pessoajuridica.numero }}</td>
+                <td>{{ pessoajuridica.bairro }}</td>
+                <td>{{ pessoajuridica.cidade }}</td>
+                <td>{{ pessoajuridica.estado }}</td>
+                <td>{{ pessoajuridica.pais }}</td>
+                <td>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <button>Atualizar</button>
+                    </form>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <button>Deletar</button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+    <form action="{% url 'index' %}" method="post">
+        {% csrf_token %}
+        <button>
+            Visualizar pessoa fisica
+        </button>
+    </form>
+    <form action="{% url 'cadastrarPessoaJuridica' %}" method="post">
+        {% csrf_token %}
+        <button>
+            Cadastrar pessoa juridica
+        </button>
+    </form>
+</body>
+</html>

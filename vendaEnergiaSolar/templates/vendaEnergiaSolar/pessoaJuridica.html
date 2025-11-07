@@ -1,33 +1,55 @@
+{% load static %}
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastrar Pessoa Juridica</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Pessoas Jurídicas</title>
 </head>
-<body style="text-align: center;">
-    <table>
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Nome Fantasia</th>
-            <th>CNPJ</th>
-            <th>Razão Social</th>
-            <th>Data de Abertura</th>
-            <th>Inscrição Estadual</th>
-            <th>Endereço</th>
-            <th>CEP</th>
-            <th>Logradouro</th>
-            <th>Número</th>
-            <th>Bairro</th>
-            <th>Cidade</th>
-            <th>Estado</th>
-            <th>País</th>
-            <th>Ações</th>
-        </tr>
-    </thead>
+<body>
+  <div class="container">
+    <div class="table-scroll">
+      <table class="table">
+        <colgroup>
+            <col style="width:4%">   <!-- ID -->
+            <col style="width:10%">  <!-- Nome Fantasia -->
+            <col style="width:10%">  <!-- CNPJ -->
+            <col style="width:12%">  <!-- Razão Social -->
+            <col style="width:8%">   <!-- Data -->
+            <col style="width:8%">   <!-- Inscrição Estadual -->
+            <col style="width:12%">  <!-- Endereço -->
+            <col style="width:6%">   <!-- CEP -->
+            <col style="width:10%">  <!-- Logradouro -->
+            <col style="width:6%">   <!-- Número -->
+            <col style="width:8%">   <!-- Bairro -->
+            <col style="width:8%">   <!-- Cidade -->
+            <col style="width:5%">   <!-- Estado -->
+            <col style="width:5%">   <!-- País -->
+            <col style="width:6%">   <!-- Ações -->
+        </colgroup>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome Fantasia</th>
+                <th>CNPJ</th>
+                <th>Razão Social</th>
+                <th>Data de Abertura</th>
+                <th>Inscrição Estadual</th>
+                <th>Endereço</th>
+                <th>CEP</th>
+                <th>Logradouro</th>
+                <th>Número</th>
+                <th>Bairro</th>
+                <th>Cidade</th>
+                <th>Estado</th>
+                <th>País</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
 
-    <tbody>
+        <tbody>
         {% for pessoajuridica in pessoasjuridicas %}
             <tr>
                 <td>{{ pessoajuridica.id }}</td>
@@ -44,31 +66,32 @@
                 <td>{{ pessoajuridica.cidade }}</td>
                 <td>{{ pessoajuridica.estado }}</td>
                 <td>{{ pessoajuridica.pais }}</td>
-                <td>
-                    <form action="{% url 'atualizarPessoaJuridica' pessoajuridica.id %}" method="post">
+                <td class="actions-cell">
+                    <form action="{% url 'atualizarPessoaJuridica' pessoajuridica.id %}" method="post" class="inline-form">
                         {% csrf_token %}
-                        <button>Atualizar</button>
+                        <button type="submit" class="btn-sm">Atualizar</button>
                     </form>
-                    <form action="{% url 'deletarPessoaJuridica' pessoajuridica.id %}" method="post">
+                    <form action="{% url 'deletarPessoaJuridica' pessoajuridica.id %}" method="post" class="inline-form">
                         {% csrf_token %}
-                        <button>Deletar</button>
+                        <button type="submit" class="btn-sm btn-danger">Deletar</button>
                     </form>
                 </td>
             </tr>
         {% endfor %}
-    </tbody>
-</table>
-    <form action="{% url 'index' %}" method="post">
+        </tbody>
+      </table>
+    </div> <br>
+
+    <div class="below-table-actions">
+      <form action="{% url 'index' %}" method="post">
         {% csrf_token %}
-        <button>
-            Visualizar pessoa fisica
-        </button>
-    </form>
-    <form action="{% url 'cadastrarPessoaJuridica' %}" method="post">
+        <button type="submit">Visualizar pessoa física</button>
+      </form>
+      <form action="{% url 'cadastrarPessoaJuridica' %}" method="post">
         {% csrf_token %}
-        <button>
-            Cadastrar pessoa juridica
-        </button>
-    </form>
+        <button type="submit">Cadastrar nova pessoa jurídica</button>
+      </form> 
+    </div>
+  </div>
 </body>
 </html>

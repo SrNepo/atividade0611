@@ -16,15 +16,26 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from vendaEnergiaSolar import views
+from vendaEnergiaSolar import viewsPessoaFisica, viewsPessoaJuridica
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index, name='index'),
-    path('visualizarPessoaJuridica/', views.vizualizarPessoaJuridica, name='visualizarPessoaJuridica'),
-    path('cadastrarPessoaFisica/',views.cadastrarPessoaFisica,name='cadastrarPessoaFisica'),
-    path('cadastrarPessoaJuridica/', views.cadastrarPessoaJuridica, name='cadastrarPessoaJuridica'),
-    path('adicionarPessoaFisica/', views.adicionarPessoaFisica, name='adicionarPessoaFisica'),
-    path('deletarPessoaFisica/<int:id>/', views.deletarPessoaFisica, name='deletarPessoaFisica'),
-    path('atualizarPessoaFisica/<int:id>/', views.atualizarPessoaFisica,name='atualizarPessoaFisica')
+    path('', viewsPessoaFisica.index, name='index'),
+    path('visualizarPessoaJuridica/', viewsPessoaJuridica.vizualizarPessoaJuridica, name='visualizarPessoaJuridica'),
+
+    # Pessoa Física
+    path('cadastrarPessoaFisica/', viewsPessoaFisica.cadastrarPessoaFisica, name='cadastrarPessoaFisica'),
+    path('adicionarPessoaFisica/', viewsPessoaFisica.adicionarPessoaFisica, name='adicionarPessoaFisica'),
+    path('deletarPessoaFisica/<int:id>/', viewsPessoaFisica.deletarPessoaFisica, name='deletarPessoaFisica'),
+    path('atualizarPessoaFisica/<int:id>/', viewsPessoaFisica.atualizarPessoaFisica, name='atualizarPessoaFisica'),
+    path('aplicarAtualizacaoPessoaFisica/<int:id>/', viewsPessoaFisica.aplicarAtualizacaoPessoaFisica, 
+         name='aplicarAtualizacaoPessoaFisica'),
+
+    # Pessoa Jurídica
+    path('cadastrarPessoaJuridica/', viewsPessoaJuridica.cadastrarPessoaJuridica, name='cadastrarPessoaJuridica'),
+    path('adicionarPessoaJuridica/', viewsPessoaJuridica.adicionarPessoaJuridica, name='adicionarPessoaJuridica'),
+    path('deletarPessoaJuridica/<int:id>/', viewsPessoaJuridica.deletarPessoaJuridica, name='deletarPessoaJuridica'),
+    path('atualizarPessoaJuridica/<int:id>/', viewsPessoaJuridica.atualizarPessoaJuridica, name='atualizarPessoaJuridica'),
+    path('aplicarAtualizacaoPessoaJuridica/<int:id>/', viewsPessoaJuridica.aplicarAtualizacaoPessoaJuridica, 
+         name='aplicarAtualizacaoPessoaJuridica'),
 ]

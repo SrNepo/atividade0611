@@ -45,11 +45,11 @@
                 <td>{{ pessoajuridica.estado }}</td>
                 <td>{{ pessoajuridica.pais }}</td>
                 <td>
-                    <form action="" method="post">
+                    <form action="{% url 'atualizarPessoaJuridica' pessoajuridica.id %}" method="post">
                         {% csrf_token %}
                         <button>Atualizar</button>
                     </form>
-                    <form action="" method="post">
+                    <form action="{% url 'deletarPessoaJuridica' pessoajuridica.id %}" method="post">
                         {% csrf_token %}
                         <button>Deletar</button>
                     </form>

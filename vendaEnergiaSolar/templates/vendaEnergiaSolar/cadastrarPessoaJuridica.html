@@ -1,11 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Cadastrar Pessoa Jurídica</title>
 </head>
 <body>
-    oi
+    <h1>Cadastrar Pessoa Jurídica</h1>
+
+    <form action="{% url 'adicionarPessoaJuridica' %}" method="post">
+        {% csrf_token %}
+
+        <label for="nome_fantasia">Nome Fantasia:</label><br>
+        <input type="text" id="nome_fantasia" name="nome_fantasia" required><br><br>
+
+        <label for="cnpj">CNPJ:</label><br>
+        <input type="text" id="cnpj" name="cnpj" maxlength="14" required><br><br>
+
+        <label for="razao_social">Razão Social:</label><br>
+        <input type="text" id="razao_social" name="razao_social" required><br><br>
+
+        <label for="abertura">Data de Abertura:</label><br>
+        <input type="date" id="abertura" name="abertura" required><br><br>
+
+        <label for="inscricao_estadual">Inscrição Estadual:</label><br>
+        <input type="text" id="inscricao_estadual" name="inscricao_estadual"><br><br>
+
+        <label for="endereco">Endereço:</label><br>
+        <input type="text" id="endereco" name="endereco"><br><br>
+
+        <label for="cep">CEP:</label><br>
+        <input type="text" id="cep" name="cep" maxlength="9"><br><br>
+
+        <label for="logradouro">Logradouro:</label><br>
+        <input type="text" id="logradouro" name="logradouro"><br><br>
+
+        <label for="numero">Número:</label><br>
+        <input type="text" id="numero" name="numero" maxlength="10"><br><br>
+
+        <label for="bairro">Bairro:</label><br>
+        <input type="text" id="bairro" name="bairro"><br><br>
+
+        <label for="cidade">Cidade:</label><br>
+        <input type="text" id="cidade" name="cidade"><br><br>
+
+        <label for="estado">Estado:</label><br>
+        <input type="text" id="estado" name="estado" maxlength="2"><br><br>
+
+        <label for="pais">País:</label><br>
+        <input type="text" id="pais" name="pais"><br><br>
+
+        <button type="submit">Cadastrar</button>
+    </form>
+
+    <form action="{% url 'visualizarPessoaJuridica' %}" method="get">
+        <button>Voltar</button>
+    </form>
 </body>
 </html>
